@@ -11,6 +11,7 @@ import { Product } from '../model/product.model';
 })
 export class ProductsComponent implements OnInit {
   products : Array<Product> = [];
+  public keyword: string = '';
   constructor(private productsService: ProductService) {
   }
 
@@ -46,6 +47,17 @@ export class ProductsComponent implements OnInit {
 
     editProduct(p:Product){
       //
+    }
+
+    searchProducts(){
+      this.productsService.searchProducts(this.keyword).subscribe({
+        next: data => {
+          this.products = data;
+        },
+        error: error => {
+          console.log(error);
+        }
+      })
     }
 
 }

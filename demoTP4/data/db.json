@@ -1,6 +1,11 @@
 {
   "products": [
     {
+      "id": "1",
+      "name": "Computer",
+      "price": 1000
+    },
+    {
       "id": "2",
       "name": "Product 2",
       "price": 200
@@ -39,6 +44,21 @@
       "id": "10",
       "name": "Product 10",
       "price": 1000
+    },
+    {
+      "id": "11",
+      "name": "Nintando",
+      "price": 122
+    },
+    {
+      "id": "13",
+      "name": "Signalo",
+      "price": 100
+    },
+    {
+      "id": "62b3",
+      "name": "test",
+      "price": 90
     }
   ]
 }
