@@ -1,6 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { Observable } from 'rxjs';
+import { Product } from '../model/product.model';
 
 @Component({
   selector: 'app-products',
@@ -8,6 +10,7 @@ import { ProductService } from '../services/product.service';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
+  products : Array<Product> = [];
   constructor(private productsService: ProductService) {
   }
 
@@ -16,8 +19,7 @@ export class ProductsComponent implements OnInit {
     }
     
     getProducts(){
-      this.productsService.getProducts()
-      .subscribe({
+      this.productsService.getProducts().subscribe({
         next: data => {
           this.products = data;
         },
@@ -25,7 +27,25 @@ export class ProductsComponent implements OnInit {
           console.log(error);
         }
       })
+
+      //this.products = this.productsService.getProducts();
     }
 
-  products: Array<any> = [];
+    deleteProduct(product: Product) {
+      if(confirm('Are you sure you want to delete this product?')) {
+        this.productsService.deleteProduct(product).subscribe({
+          next: _ => {
+            this.products = this.products.filter(p => p.id !== product.id);
+          },
+          error: error => {
+            console.log(error);
+          }
+        });
+      }
+    }
+
+    editProduct(p:Product){
+      //
+    }
+
 }

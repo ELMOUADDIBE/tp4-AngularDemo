@@ -16,6 +16,14 @@
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="editProduct(product)">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-danger" (click)="deleteProduct(product)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
