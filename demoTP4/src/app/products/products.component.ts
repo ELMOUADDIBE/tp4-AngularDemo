@@ -3,61 +3,79 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product.model';
+import { Router } from '@angular/router';
+import { AppStateService } from '../services/app-state.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent implements OnInit {
-  products : Array<Product> = [];
-  public keyword: string = '';
-  constructor(private productsService: ProductService) {
+export class ProductsComponent implements OnInit{
+
+  constructor(private productService:ProductService,
+              private router : Router , public appState : AppStateService) {
   }
 
   ngOnInit() {
-    this.getProducts();
-    }
-    
-    getProducts(){
-      this.productsService.getProducts().subscribe({
-        next: data => {
-          this.products = data;
-        },
-        error: error => {
-          console.log(error);
-        }
-      })
+    this.searchProducts();
+  }
 
-      //this.products = this.productsService.getProducts();
-    }
-
-    deleteProduct(product: Product) {
-      if(confirm('Are you sure you want to delete this product?')) {
-        this.productsService.deleteProduct(product).subscribe({
-          next: _ => {
-            this.products = this.products.filter(p => p.id !== product.id);
-          },
-          error: error => {
-            console.log(error);
+  searchProducts(){
+    /*
+    this.appState.setProductState({
+      status :"LOADING"
+    });*/
+    this.productService.searchProducts(
+      this.appState.productsState.keyword,
+      this.appState.productsState.currentPage,
+      this.appState.productsState.pageSize)
+      .subscribe({
+        next : (resp) => {
+          let products=resp.body as Product[];
+          let totalProducts:number=parseInt(resp.headers.get('x-total-count')!);
+          //this.appState.productsState.totalProducts=totalProducts;
+          let totalPages=
+            Math.floor(totalProducts / this.appState.productsState.pageSize);
+          if(totalProducts % this.appState.productsState.pageSize !=0 ){
+            ++totalPages;
           }
-        });
-      }
-    }
-
-    editProduct(p:Product){
-      //
-    }
-
-    searchProducts(){
-      this.productsService.searchProducts(this.keyword).subscribe({
-        next: data => {
-          this.products = data;
+          this.appState.setProductState({
+            products :products,
+            totalProducts : totalProducts,
+            totalPages : totalPages,
+            status :"LOADED"
+          })
         },
-        error: error => {
-          console.log(error);
+        error : err => {
+          this.appState.setProductState({
+            status : "ERROR",
+            errorMessage :err
+          })
         }
       })
-    }
 
+    //this.products=this.productService.getProducts();
+  }
+
+
+  handleDelete(product: Product) {
+    if(confirm("Etes vous sûre?"))
+    this.productService.deleteProduct(product).subscribe({
+      next:value => {
+        //this.getProducts();
+        //this.appState.productsState.products=
+          //this.appState.productsState.products.filter((p:any)=>p.id!=product.id);
+        this.searchProducts();
+      }
+    })
+  }
+  handleGotoPage(page: number) {
+    this.appState.productsState.currentPage=page;
+    this.searchProducts();
+  }
+
+  handleEdit(product: Product) {
+    this.router.navigateByUrl(`/admin/editProduct/${product.id}`)
+  }
 }
