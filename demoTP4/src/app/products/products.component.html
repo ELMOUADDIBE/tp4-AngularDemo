@@ -1,1 +1,23 @@
-<p>products works!</p>
+<div class="card">
+    <div class="card-header">
+        Products
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
