@@ -14,11 +14,27 @@ import { AppStateService } from '../services/app-state.service';
 export class ProductsComponent implements OnInit{
 
   constructor(private productService:ProductService,
-              private router : Router , public appState : AppStateService) {
+              private router : Router,
+              public appState : AppStateService) {
   }
 
   ngOnInit() {
-    this.searchProducts();
+    this.getAllProducts()
+  }
+
+  getAllProducts() {
+    this.productService.getAllProducts().subscribe(products => {
+      this.appState.setProductState({
+        products: products,
+        status: "LOADED"
+      });
+    }, error => {
+      console.error('Failed to load products', error);
+      this.appState.setProductState({
+        status: "ERROR",
+        errorMessage: error.message || 'Unknown error'
+      });
+    });
   }
 
   searchProducts(){
@@ -63,10 +79,10 @@ export class ProductsComponent implements OnInit{
     if(confirm("Etes vous sûre?"))
     this.productService.deleteProduct(product).subscribe({
       next:value => {
-        //this.getProducts();
+        this.getAllProducts();
         //this.appState.productsState.products=
           //this.appState.productsState.products.filter((p:any)=>p.id!=product.id);
-        this.searchProducts();
+        //this.searchProducts();
       }
     })
   }

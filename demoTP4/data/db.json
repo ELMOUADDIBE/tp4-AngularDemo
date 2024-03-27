@@ -1,21 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Computer",
-      "price": 1000
-    },
-    {
-      "id": "2",
-      "name": "Product 2",
-      "price": 200
-    },
-    {
-      "id": "3",
-      "name": "Product 3",
-      "price": 300
-    },
-    {
       "id": "5",
       "name": "Product 5",
       "price": 500
@@ -56,9 +41,9 @@
       "price": 100
     },
     {
-      "id": "62b3",
-      "name": "test",
-      "price": 90
+      "id": "e624",
+      "name": "elmouaddibe",
+      "price": 5
     }
   ]
 }

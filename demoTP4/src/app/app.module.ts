@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { NewProductsComponent } from './new-products/new-products.component';
-import { AppStateService } from './services/app-state.service';
 
 @NgModule({
   declarations: [

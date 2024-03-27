@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.delete<any>(`${this.host}/products/${product.id}`);
   }
 
+  getAllProducts():Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.host}/products`);
+  }
+
   saveProduct(product: Product):Observable<Product> {
     return this.http.post<Product>(`${this.host}/products`,
       product);
