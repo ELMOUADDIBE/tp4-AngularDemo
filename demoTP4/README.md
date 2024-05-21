@@ -1,27 +1,78 @@
-# DemoTP4
+# Product Management Web Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
+## Overview
 
-## Development server
+Welcome to the Product Management Web Application! This Angular-based application allows you to efficiently manage products by adding, removing, and editing them. The backend is powered by JSON-server, ensuring a seamless data handling experience.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Table of Contents
 
-## Code scaffolding
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Add Products:** Easily add new products with comprehensive details.
+- **Edit Products:** Update existing product information with a simple interface.
+- **Remove Products:** Effortlessly delete products from the list.
+- **Responsive Design:** Enjoy a seamless experience across all devices with Bootstrap styling.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Technologies Used
 
-## Running unit tests
+- **Frontend:** Angular
+- **Backend:** JSON-server
+- **Styling:** Bootstrap
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Setup and Installation
 
-## Running end-to-end tests
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/ELMOUADDIBE/tp4-AngularDemo.git
+   cd product-management-app
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. **Install Angular dependencies:**
+   ```sh
+   npm install
+   ```
 
-## Further help
+3. **Install JSON-server:**
+   ```sh
+   npm install -g json-server@0.17.4
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. **Start JSON-server:**
+   ```sh
+   json-server -w data/db.json -p 8080
+   ```
+
+5. **Run the Angular application:**
+   ```sh
+   ng serve
+   ```
+
+6. **Open your browser and navigate to:**
+   ```
+   http://localhost:4200
+   ```
+
+## Usage
+
+- **Home Page:** A welcoming interface with navigation options.
+- **Products Page:** Displays all products with options to add, edit, or remove items.
+- **Add Product:** A user-friendly form to input new product details.
+
+## Screenshots
+
+### Home Page
+![home.png](../imgs/home.png)
+### Products Page
+![prod.png](../imgs/prod.png)
+### Add Product
+![addpro.png](../imgs/addpro.png)
+## Contributing
+
+We welcome contributions! Please fork this repository and submit a pull request with your improvements. Adhere to the project's coding standards and ensure your changes are well-tested.

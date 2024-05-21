@@ -1,31 +1,32 @@
-<div class="card">
-    <div class="card-header">
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
         Products
     </div>
     <div class="input-group mb-3">
-        <input type="text" [(ngModel)]="appState.productsState.keyword" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+        <input type="text" [(ngModel)]="keyword" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
         <button  (click)="searchProducts()" class="btn btn-outline-success" type="button" id="search-icon">
             <i class="bi bi-search"></i>
         </button>
     </div>
     <div class="card-body">
-        <table class="table">
-            <thead>
+        <table class="table table-striped">
+            <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of appState.productsState.products">
+                <tr *ngFor="let product of products">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
                     <td>
-                        <!-- <button class="btn btn-primary" (click)="handleEdit(product)">
+                        <button class="btn btn-primary">
                             <i class="bi bi-pencil"></i>
-                        </button> -->
+                        </button>
                         <button class="btn btn-danger" (click)="handleDelete(product)">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -33,16 +34,12 @@
                 </tr>
             </tbody>
         </table>
-        <ul class="nav nav-pills">
-            <li *ngFor="let page of [].constructor(this.appState.productsState.totalPages); let i=index">
-              <button (click)="handleGotoPage(i+1)"
-                      [ngClass]="this.appState.productsState.currentPage==(i+1)?'btn-success '
-                      :'btn-outline-success'"
-                      class="btn m-1"
-                      >
+        <ul class="nav nav-pills justify-content-center">
+            <li *ngFor="let page of [].constructor(this.totalPages); let i = index" class="nav-item">
+              <button class="btn btn-outline-success" >
                 {{(i+1)}}
               </button>
             </li>
-          </ul>
+        </ul>
     </div>
 </div>

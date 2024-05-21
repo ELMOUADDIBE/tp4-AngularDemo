@@ -7,7 +7,7 @@ import { Product } from '../model/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private host : string ="http://localhost:8888";
+  private host : string ="http://localhost:8080";
   constructor(private http: HttpClient) { }
 
   public searchProducts(keyword :string="",page : number=1, size:number=4){
@@ -17,8 +17,8 @@ export class ProductService {
     return this.http.delete<any>(`${this.host}/products/${product.id}`);
   }
 
-  getAllProducts():Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.host}/products`);
+  public getAllProducts(page: number=1, size: number=4) {
+    return this.http.get(`${this.host}/products?_page=${page}&_limit=${size}`,{observe:'response'});
   }
 
   saveProduct(product: Product):Observable<Product> {
