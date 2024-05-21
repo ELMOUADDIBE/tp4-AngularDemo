@@ -31,7 +31,6 @@ Welcome to the Product Management Web Application! This Angular-based applicatio
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/ELMOUADDIBE/tp4-AngularDemo.git
-   cd product-management-app
    ```
 
 2. **Install Angular dependencies:**
